@@ -1699,7 +1699,7 @@ void DW1000Class::getPrettyBytes(byte cmd, uint16_t offset, char msgBuffer[], ui
 	uint16_t i, j, b;
 	byte* readBuf = (byte*)malloc(n);
 	readBytes(cmd, offset, readBuf, n);
-	b     = sprintf(msgBuffer, "Reg: 0x%02x, bytes: %d\nB: 7 6 5 4 3 2 1 0\n", cmd, n);  // TODO - tpye
+	b     = sprintf(msgBuffer, "Reg: 0x%02x, bytes: %d\nB: 7 6 5 4 3 2 1 0\n", cmd, n);  // TODO - type
 	for(i = 0; i < n; i++) {
 		byte curByte = readBuf[i];
 		snprintf(&msgBuffer[b++], 2, "%d", (i+1));
