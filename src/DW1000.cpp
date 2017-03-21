@@ -1476,6 +1476,10 @@ float DW1000Class::getReceivePower() {
 	readBytes(RX_FINFO, NO_SUB, rxFrameInfo, LEN_RX_FINFO);
 	C = (uint16_t)cirPwrBytes[0] | ((uint16_t)cirPwrBytes[1] << 8);
 	N = (((uint16_t)rxFrameInfo[2] >> 4) & 0xFF) | ((uint16_t)rxFrameInfo[3] << 4);
+
+	//fixme todo: sometimes RX_FQUAL reads as zero. Needs further research.
+	if (C==0 || N==0) return -90.0;
+
 	if(_pulseFrequency == TX_PULSE_FREQ_16MHZ) {
 		A       = 115.72;
 		corrFac = 2.3334;
