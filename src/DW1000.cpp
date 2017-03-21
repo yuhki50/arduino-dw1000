@@ -292,6 +292,22 @@ void DW1000Class::enableMode(const byte mode[]) {
 	}
 }
 
+void DW1000Class::setManualTxPower(float desiredDb) {
+	byte txpower[LEN_TX_POWER];
+	if (desiredDb<0) desiredDb=0;
+	txpower[0] = (0x6<<5);
+	while (desiredDb>15.5 && txpower[0]>0)
+	{
+		txpower[0] -= (1<<5);
+		desiredDb -= 3;
+	}
+	desiredDb *= 2;
+	txpower[0] |= (desiredDb>31)?(0x1F):((unsigned char)desiredDb);
+	txpower[3] = txpower[2] = txpower[1] = txpower[0];
+	useSmartPower(false);
+	writeBytes(TX_POWER, NO_SUB, txpower, LEN_TX_POWER);
+}
+
 void DW1000Class::tune() {
 	// these registers are going to be tuned/configured
 	byte agctune1[LEN_AGC_TUNE1];

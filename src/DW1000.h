@@ -326,6 +326,9 @@ public:
 	// use RX/TX specific and general default settings
 	static void setDefaults();
 	
+	/* set TX power selection to manual and apply value (0 <= desiredDb <= 33.5) */
+	void setManualTxPower (float desiredDb);
+
 	/* debug pretty print registers. */
 	static void getPrettyBytes(byte cmd, uint16_t offset, char msgBuffer[], uint16_t n);
 	static void getPrettyBytes(byte data[], char msgBuffer[], uint16_t n);
