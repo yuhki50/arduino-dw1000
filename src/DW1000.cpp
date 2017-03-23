@@ -284,7 +284,7 @@ void DW1000Class::enableMode(const byte mode[]) {
 	setPreambleLength(mode[2]);
 	// TODO add channel and code to mode tuples
 	// TODO add channel and code settings with checks (see Table 58)
-	setChannel(CHANNEL_5);
+	setChannel(mode[3]);
 	if(mode[1] == TX_PULSE_FREQ_16MHZ) {
 		setPreambleCode(PREAMBLE_CODE_16MHZ_4);
 	} else {
