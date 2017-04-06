@@ -168,8 +168,8 @@ void DW1000RangingClass::startAsAnchor(char address[], const byte mode[]) {
 	Serial.println(address);
 	//we need to define a random short address:
 	randomSeed(analogRead(0));
-	_currentShortAddress[0] = random(0, 256);
-	_currentShortAddress[1] = random(0, 256);
+	_currentShortAddress[0] = 0x10;
+	_currentShortAddress[1] = 0x01;
 	
 	//we configur the network for mac filtering
 	//(device Address, network ID, frequency)
@@ -194,8 +194,8 @@ void DW1000RangingClass::startAsTag(char address[], const byte mode[]) {
 	Serial.println(address);
 	//we need to define a random short address:
 	randomSeed(analogRead(0));
-	_currentShortAddress[0] = random(0, 256);
-	_currentShortAddress[1] = random(0, 256);
+	_currentShortAddress[0] = 0x20;
+	_currentShortAddress[1] = 0x01;
 	
 	//we configur the network for mac filtering
 	//(device Address, network ID, frequency)

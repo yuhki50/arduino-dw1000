@@ -11,7 +11,7 @@
 // connection pins
 const uint8_t PIN_RST = 9; // reset pin
 const uint8_t PIN_IRQ = 2; // irq pin
-const uint8_t PIN_SS = SS; // spi select pin
+const uint8_t PIN_SS = 10; // spi select pin
 
 void setup() {
   Serial.begin(115200);
@@ -24,9 +24,11 @@ void setup() {
   DW1000Ranging.attachInactiveDevice(inactiveDevice);
   //Enable the filter to smooth the distance
   //DW1000Ranging.useRangeFilter(true);
-  
+
   //we start the module as an anchor
   DW1000Ranging.startAsAnchor("82:17:5B:D5:A9:9A:E2:9C", DW1000.MODE_LONGDATA_RANGE_ACCURACY);
+
+  DW1000.setManualTxPower(33.5);
 }
 
 void loop() {

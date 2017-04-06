@@ -11,7 +11,7 @@
 // connection pins
 const uint8_t PIN_RST = 9; // reset pin
 const uint8_t PIN_IRQ = 2; // irq pin
-const uint8_t PIN_SS = SS; // spi select pin
+const uint8_t PIN_SS = 10; // spi select pin
 
 void setup() {
   Serial.begin(115200);
@@ -27,6 +27,8 @@ void setup() {
   
   //we start the module as a tag
   DW1000Ranging.startAsTag("7D:00:22:EA:82:60:3B:9C", DW1000.MODE_LONGDATA_RANGE_ACCURACY);
+
+  DW1000.setManualTxPower(33.5);
 }
 
 void loop() {
